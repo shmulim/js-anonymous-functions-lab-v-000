@@ -1,16 +1,13 @@
 $(document).ready(function(){
-
   menu();
   play();
   pause();
   show();
-
-
 });
 
   var jukeboxSongs = { "taylor swift": "in the clear", "beyonce": "halo", "drake": "hotline bling"};
   var artists = Object.keys(jukeboxSongs);
-  var theArtist = artists[Math.floor(Math.random()) * artists.length];
+  var theArtist = artists[randomNumber() * artists.length];
   var songToPlay = jukeboxSongs[theArtist];
 
   function randomNumber() {
@@ -18,37 +15,30 @@ $(document).ready(function(){
   }
 
   function menu(){
-    $('#menu').on('click', menuOptions);
-  }
-
-   function menuOptions() {
-    $('#menuOptions').html("You can play a song, pause a song, or view all the songs");
-  }
-
-  function nowPlaying(){
-    $('#songPlaying').html("now playing " + songToPlay + " by " + theArtist);
-    return "now playing " + songToPlay + " by " + theArtist;
+    $('#menu').on('click', function(){
+      $('#menuOptions').html("You can play a song, pause a song, or view all the songs");
+    });
   }
 
   function play(){
-    $('#play').on('click', nowPlaying)
-  }
-
-  function nowPausing(){
-    $('#songPaused').html(songToPlay + " is paused");
+    $('#play').on('click', function(){
+      $('#songPlaying').html("now playing " + songToPlay + " by " + theArtist);
+      return "now playing " + songToPlay + " by " + theArtist;
+    });
   }
 
   function pause(){
-    $('#pause').on('click', nowPausing);
-  }
-   function showSongs(){
-    var songs = "";
-    for (var key in jukeboxSongs) {
-    songs += jukeboxSongs[key] + " by " + key +  " is available to play. "
-  }
-    $('#showSongs').html(songs);
-  }
-  function show(){
-    $('#show').on('click', showSongs);
+    $('#pause').on('click', function(){
+      $('#songPaused').html(songToPlay + " is paused");
+    });
   }
 
+  function show(){
+    $('#show').on('click', function(){
+      var songs = "";
+      for (var key in jukeboxSongs) {
+        songs += jukeboxSongs[key] + " by " + key +  " is available to play. "
+      }
+      $('#showSongs').html(songs);
+    });
+  }
