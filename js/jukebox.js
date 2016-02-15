@@ -7,12 +7,8 @@ $(document).ready(function(){
 
   var jukeboxSongs = { "taylor swift": "in the clear", "beyonce": "halo", "drake": "hotline bling"};
   var artists = Object.keys(jukeboxSongs);
-  var theArtist = artists[randomNumber() * artists.length];
+  var theArtist = artists[Math.floor(Math.random()) * artists.length];
   var songToPlay = jukeboxSongs[theArtist];
-
-  function randomNumber() {
-    return Math.floor(Math.random());
-  }
 
   function menu(){
     $('#menu').on('click', function(){
